@@ -32,6 +32,7 @@ data "template_file" "ecs_task_definition" {
     fargate_cpu          = var.fargate_cpu
     fargate_memory       = var.fargate_memory
     region               = var.region
+    log_group_path       = var.awslogs-group-path
   }
 }
 

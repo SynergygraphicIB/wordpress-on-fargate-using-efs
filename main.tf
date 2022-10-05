@@ -118,7 +118,7 @@ module "alb" {
 
 // MODULE EVERYTHING ECS - FARGATE
 
-/* module "fargate" {
+module "fargate" {
   source     = "./modules/fargate"
   depends_on = [module.alb]
 
@@ -135,4 +135,4 @@ module "alb" {
   public_subnets        = module.vpc_main.public_subnets
   alb_security_group_id = [module.alb.alb_security_group_id]
   alb_target_group_arn  = module.alb.alb_target_group_arn
-} */
+}

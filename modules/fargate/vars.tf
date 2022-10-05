@@ -41,10 +41,17 @@ variable "alb_target_group_arn" {}
 
 variable "app_count" {
   type        = number
-  description = "(total of containers to be deployed"
+  description = "total of containers to be deployed"
 }
 
 variable "task_definition_name" {
   type    = string
-  default = "nginx-fargate"
+  default = "wordpress-fargate"
+}
+
+# CLOUDWATCH VARIABLES
+
+variable "awslogs-group-path" {
+  type    = string
+  default = "/ecs/wordpress-fargate-app"
 }

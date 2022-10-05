@@ -125,13 +125,13 @@ variable "app_port" {
 }
 
 // variable for wordpress
-variable "health_check_path" {
-  default = "/index.php" # proper path for wordpress container
-}
-
 /* variable "health_check_path" {
-  default = "/" # proper path for nginx app container
+  default = "/index.php" # proper path for wordpress container
 } */
+
+variable "health_check_path" {
+  default = "/" # proper path for nginx app container
+}
 
 
 ##              RDS VARIABLES                 ##
@@ -182,7 +182,7 @@ variable "app_count" {
 variable "app_name" {
   description = "Docker image to run in the ECS cluster"
   // default     = "wordpress-on-fargate"
-  default = "nginx-fargate"
+  default = "wordpress-fargate"
 }
 
 variable "app_image" {
