@@ -13,7 +13,7 @@ locals {
 
   common_tags = {
     Environment = "dev"
-    Project     = "${local.app_name}-with efs"
+    Project     = "${local.app_name}-using-EFS"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_security_group" "this" {
   vpc_id = local.vpc_id
 
   tags = {
-    Name = "${local.app_name}-sg"
+    Name = "${local.app_name}-SG"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "ingress" {
   type              = "ingress"
   from_port         = local.rds_port
   to_port           = local.rds_port
-  protocol          = "tcp"
+  protocol          = "TCP"
   cidr_blocks       = local.rds_cidr_blocks
   security_group_id = aws_security_group.this.id
 }
@@ -50,10 +50,10 @@ resource "aws_security_group_rule" "egress" {
 resource "aws_db_subnet_group" "this" {
   name        = local.db_subnet_group_name
   subnet_ids  = local.private_subnets
-  description = "database subnet group for worpress fargate rds"
+  description = "database subnet group for wordpress fargate rds cluster"
 
   tags = {
-    Name = "rds-subnet-group-for-wp-fargate"
+    Name = "${local.app_name}-db-SubnetGroup"
   }
 }
 

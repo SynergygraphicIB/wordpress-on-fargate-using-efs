@@ -19,7 +19,7 @@ output "alb_grupo_blanco_id" {
 }
 
 
-/*
+// OUTPUTS FROM RDS MODULE 
 output "rds_endpoint" {
   value = module.rds.rds_endpoint
 }
@@ -27,7 +27,9 @@ output "rds_endpoint" {
 output "db_instance_id" {
   description = "The RDS instance ID"
   value       = module.rds.db_instance_id
-} */
+}
+
+// OUTPUTS FROM MODULE FARGATE
 
 output "log-group-path" {
   value = module.fargate.aws-log-group-path

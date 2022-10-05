@@ -102,7 +102,8 @@ module "alb" {
 
 }
 
-/* module "rds" {
+// MODULE RDS 
+module "rds" {
   source = "./modules/rds"
 
   vpc_id               = module.vpc_main.vpc_id
@@ -114,7 +115,7 @@ module "alb" {
   db_password          = var.db_password
   db_subnet_group_name = var.db_subnet_group_name
   private_subnets      = module.vpc_main.private_subnets
-} */
+}
 
 // MODULE EVERYTHING ECS - FARGATE
 
