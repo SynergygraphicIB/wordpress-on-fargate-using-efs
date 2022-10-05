@@ -33,6 +33,10 @@ data "template_file" "ecs_task_definition" {
     fargate_memory       = var.fargate_memory
     region               = var.region
     log_group_path       = var.awslogs-group-path
+    rds_endpoint         = var.rds_endpoint
+    db_name              = var.db_name
+    db_username          = var.db_username
+    db_password          = var.db_password
   }
 }
 

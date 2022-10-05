@@ -25,7 +25,4 @@ variable "db_username" {}
 
 variable "db_subnet_group_name" {}
 
-variable "private_subnets" {
-  type        = list(string)
-  description = "subnets for the rds subnet group"
-}
+variable "private_subnets" {}

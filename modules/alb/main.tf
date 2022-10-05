@@ -72,7 +72,7 @@ resource "aws_alb_target_group" "this" {
   health_check {
     protocol            = "HTTP"
     path                = local.health_check_path
-    matcher             = "200"
+    matcher             = "200,302,305" // watch out and be sure adding 302 and 305 to the matcher!
     interval            = 60
     timeout             = 30
     healthy_threshold   = "3"

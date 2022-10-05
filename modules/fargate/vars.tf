@@ -55,3 +55,23 @@ variable "awslogs-group-path" {
   type    = string
   default = "/ecs/wordpress-fargate-app"
 }
+
+
+// RDS VARIABLES
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+}
+
+variable "db_password" {
+  description = "DataBase Password"
+  type        = string
+}
+
+variable "db_username" {
+  description = "DataBase user name"
+  type        = string
+}
+
+variable "rds_endpoint" {}

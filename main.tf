@@ -136,4 +136,8 @@ module "fargate" {
   public_subnets        = module.vpc_main.public_subnets
   alb_security_group_id = [module.alb.alb_security_group_id]
   alb_target_group_arn  = module.alb.alb_target_group_arn
+  rds_endpoint          = module.rds.rds_endpoint
+  db_name               = var.db_name
+  db_username           = var.db_username
+  db_password           = var.db_password
 }
