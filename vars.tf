@@ -134,7 +134,7 @@ variable "health_check_path" {
 }
 
 
-# RDS VARIABLES
+##              RDS VARIABLES                 ##
 
 variable "db_name" {
   description = "Database name"
@@ -173,6 +173,12 @@ variable "az_count" {
   default     = "2"
 }
 
+variable "app_count" {
+  type        = number
+  description = "(total numbers of containers to be deployed"
+  default     = 2
+}
+
 variable "app_name" {
   description = "Docker image to run in the ECS cluster"
   // default     = "wordpress-on-fargate"
@@ -196,8 +202,4 @@ variable "fargate_memory" {
 }
 
 
-variable "app_count" {
-  type        = number
-  description = "(total numbers of containers to be deployed"
-  default     = 2
-}
+
