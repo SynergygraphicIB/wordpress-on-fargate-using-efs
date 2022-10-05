@@ -7,10 +7,11 @@ locals {
   vpc_cidr = var.vpc_cidr
   common_tags = {
     Environment = "dev"
-    Project     = "${var.vpc_namespace}-with efs"
+    Project     = "${var.vpc_namespace}-using-EFS"
   }
 }
 
+/* 
 module "kms" {
   source                  = "./modules/kms"
   master_id               = var.master_id
@@ -46,7 +47,7 @@ module "kms_ecs" {
   key_rotation            = var.key_rotation
   policy                  = data.aws_iam_policy_document.synergy_key_policy_ecs.json
   alias                   = var.kms_ecs_alias
-}
+} */
 
 module "vpc_main" {
   source = "./modules/vpc"
@@ -115,7 +116,9 @@ module "alb" {
   private_subnets      = module.vpc_main.private_subnets
 } */
 
-module "fargate" {
+// MODULE EVERYTHING ECS - FARGATE
+
+/* module "fargate" {
   source     = "./modules/fargate"
   depends_on = [module.alb]
 
@@ -132,4 +135,4 @@ module "fargate" {
   public_subnets        = module.vpc_main.public_subnets
   alb_security_group_id = [module.alb.alb_security_group_id]
   alb_target_group_arn  = module.alb.alb_target_group_arn
-}
+} */

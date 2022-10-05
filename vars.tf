@@ -78,7 +78,7 @@ variable "kms_ecs_alias" {
 variable "vpc_namespace" {
   description = "The project namespace to use for unique resource naming"
   // default     = "wordpress-on-fargate"
-  default = "nginx-fargate"
+  default = "wordpress-fargate"
   type    = string
 }
 
@@ -125,13 +125,13 @@ variable "app_port" {
 }
 
 // variable for wordpress
-/* variable "health_check_path" {
-  default = "/index.php" # proper path for wordpress container
-} */
-
 variable "health_check_path" {
-  default = "/"
+  default = "/index.php" # proper path for wordpress container
 }
+
+/* variable "health_check_path" {
+  default = "/" # proper path for nginx app container
+} */
 
 
 ##              RDS VARIABLES                 ##
@@ -188,7 +188,7 @@ variable "app_name" {
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
   // default     = "wordpress"
-  default = "nginx:latest"
+  default = "wordpress"
 }
 
 variable "fargate_cpu" {
