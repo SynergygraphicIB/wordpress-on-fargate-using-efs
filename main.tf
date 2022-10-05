@@ -117,6 +117,9 @@ module "rds" {
   private_subnets      = module.vpc_main.private_subnets
 }
 
+// MODULE EFS
+
+
 // MODULE EVERYTHING ECS - FARGATE
 
 module "fargate" {
@@ -140,4 +143,7 @@ module "fargate" {
   db_name               = var.db_name
   db_username           = var.db_username
   db_password           = var.db_password
+  // EFS INPUTS
+  efs_id           = module.efs.id
+  efs_access_point = module.efs.access_point_ids["mnt/efs"]
 }

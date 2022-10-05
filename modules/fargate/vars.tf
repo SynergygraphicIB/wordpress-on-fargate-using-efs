@@ -75,3 +75,14 @@ variable "db_username" {
 }
 
 variable "rds_endpoint" {}
+
+// EFS VARIABLES
+
+variable "efs_id" {
+  type        = string
+  description = "efs volume id "
+}
+
+variable "efs_access_point" {
+  description = "access points of the efs volume"
+}

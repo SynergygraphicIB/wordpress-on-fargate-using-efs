@@ -34,3 +34,14 @@ output "db_instance_id" {
 output "log-group-path" {
   value = module.fargate.aws-log-group-path
 }
+
+
+// OUTPUTS FROM EFS MODULE 
+
+output "access_point_ids" {
+  value = module.efs.access_point_ids
+}
+
+output "efs_id" {
+  value = module.efs.id
+}

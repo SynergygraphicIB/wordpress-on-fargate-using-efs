@@ -37,6 +37,7 @@ data "template_file" "ecs_task_definition" {
     db_name              = var.db_name
     db_username          = var.db_username
     db_password          = var.db_password
+
   }
 }
 
