@@ -50,10 +50,10 @@ module "kms_ecs" {
 } */
 
 module "vpc_main" {
-  source = "./modules/vpc"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "1.23.0"
 
   create_vpc                             = true
-  maduro_dickhead                        = var.maduro_dickhead
   create_igw                             = true
   create_database_internet_gateway_route = true
   name                                   = local.vpc_name
