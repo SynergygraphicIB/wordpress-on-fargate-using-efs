@@ -1,2 +1,2 @@
-# nginx-fargate-with-modules
-deploy an nginx app in fargate with terraform module structure
+# Running WordPress on Amazon ECS on AWS Fargate with Amazon EFS
+deploy WordPress on Amazon ECS on AWS Fargate with Amazon EFS using a terraform module structure
