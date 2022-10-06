@@ -24,6 +24,12 @@
         }
       }
     ],
+    "mountPoints": [
+      {
+        "containerPath": "/var/www/html",
+        "sourceVolume": "${volume_name}"
+      }
+    ],
     "environment": [
       {
         "name": "WORDPRESS_DB_HOST",
@@ -40,6 +46,10 @@
       {
         "name": "WORDPRESS_DB_PASSWORD",
         "value": "${db_password}"
+      },
+      {
+        "name": "EFS_MOUNT_POINT",
+        "value": "${container_file_system_local_mount_path}"
       }
     ]
   }

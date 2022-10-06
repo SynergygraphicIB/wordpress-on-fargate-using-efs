@@ -201,5 +201,11 @@ variable "fargate_memory" {
   default     = "2048"
 }
 
+// EFS VARS
 
+variable "volume_name" {
+  type        = string
+  description = "efs volume name"
+  default     = "efs_volume"
+}
 

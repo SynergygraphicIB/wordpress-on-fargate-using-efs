@@ -13,6 +13,9 @@ locals {
   alb_security_group_id = var.alb_security_group_id
   app_count             = var.app_count
   alb_target_group_arn  = var.alb_target_group_arn
+  efs_id                = var.efs_id
+  efs_access_point_id   = var.efs_access_point
+  volume_name           = var.volume_name
 
 
   common_tags = {
@@ -26,17 +29,19 @@ data "template_file" "ecs_task_definition" {
   template = file("./modules/fargate/task-definitions/myapp.json.tpl")
 
   vars = {
-    task_definition_name = var.task_definition_name // nginx-fargate
-    app_image            = var.app_image            // nginx:latest
-    app_port             = var.app_port             // 80
-    fargate_cpu          = var.fargate_cpu
-    fargate_memory       = var.fargate_memory
-    region               = var.region
-    log_group_path       = var.awslogs-group-path
-    rds_endpoint         = var.rds_endpoint
-    db_name              = var.db_name
-    db_username          = var.db_username
-    db_password          = var.db_password
+    task_definition_name                   = var.task_definition_name // nginx-fargate
+    app_image                              = var.app_image            // nginx:latest
+    app_port                               = var.app_port             // 80
+    fargate_cpu                            = var.fargate_cpu
+    fargate_memory                         = var.fargate_memory
+    region                                 = var.region
+    log_group_path                         = var.awslogs-group-path
+    rds_endpoint                           = var.rds_endpoint
+    db_name                                = var.db_name
+    db_username                            = var.db_username
+    db_password                            = var.db_password
+    container_file_system_local_mount_path = "/mnt/efs"
+    volume_name                            = var.volume_name
 
   }
 }
@@ -55,6 +60,27 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
   cpu                      = 1024
   memory                   = var.fargate_memory
   container_definitions    = data.template_file.ecs_task_definition.rendered
+  // EFS VOLUME CONFIG
+  volume {
+    name = local.volume_name
+    efs_volume_configuration {
+      file_system_id = local.efs_id
+      # https://docs.aws.amazon.com/AmazonECS/latest/userguide/efs-volumes.html
+      root_directory     = "/"
+      transit_encryption = "ENABLED"
+      authorization_config {
+        access_point_id = local.efs_access_point_id
+        iam             = "DISABLED"
+      }
+    }
+  }
+
+  tags = merge(
+    {
+      Name = "${local.app_name}-TaskDefinition"
+    },
+    local.common_tags
+  )
 }
 
 # Traffic to the ECS cluster should only come from the ALB

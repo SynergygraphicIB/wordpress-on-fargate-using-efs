@@ -86,3 +86,5 @@ variable "efs_id" {
 variable "efs_access_point" {
   description = "access points of the efs volume"
 }
+
+variable "volume_name" {}

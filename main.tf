@@ -146,4 +146,5 @@ module "fargate" {
   // EFS INPUTS
   efs_id           = module.efs.id
   efs_access_point = module.efs.access_point_ids["mnt/efs"]
+  volume_name      = var.volume_name
 }
