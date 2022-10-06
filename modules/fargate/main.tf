@@ -52,7 +52,7 @@ resource "aws_ecs_cluster" "this" {
   name = "${local.app_name}-cluster"
 }
 
-resource "aws_ecs_task_definition" "nginx-task-definition" {
+resource "aws_ecs_task_definition" "app-task-definition" {
   family                   = local.app_name
   execution_role_arn       = aws_iam_role.ecs_cluster_role.arn
   network_mode             = "awsvpc"
@@ -112,7 +112,7 @@ resource "aws_security_group" "app-security-group" {
 
 resource "aws_ecs_service" "ecs_service" {
   name            = "${local.app_name}-ecs-service"
-  task_definition = aws_ecs_task_definition.nginx-task-definition.arn
+  task_definition = aws_ecs_task_definition.app-task-definition.arn
   desired_count   = local.app_count
   launch_type     = "FARGATE"
   cluster         = aws_ecs_cluster.this.id
