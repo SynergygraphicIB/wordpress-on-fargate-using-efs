@@ -149,7 +149,7 @@ module "fargate" {
   volume_name      = var.volume_name
 }
 
-# EFS MODULE 
+# *****                     EFS MODULE                                   *****
 module "efs" {
   source = "cloudposse/efs/aws"
   # Cloud Posse recommends pinning every module to a specific version
