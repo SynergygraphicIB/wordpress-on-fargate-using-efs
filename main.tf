@@ -116,6 +116,7 @@ module "rds" {
   db_subnet_group_name = var.db_subnet_group_name
   private_subnets      = module.vpc_main.private_subnets
   region               = var.region
+  instance_class       = var.instance_class
 }
 
 
