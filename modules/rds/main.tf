@@ -10,6 +10,8 @@ locals {
   db_password          = var.db_password
   db_subnet_group_name = var.db_subnet_group_name
   private_subnets      = var.private_subnets
+  region               = var.region
+  instance_class       = var.instance_class # if none provided the default one is "db.t2.micro" ( REQUIRED)
 
   common_tags = {
     Environment = "dev"
@@ -62,9 +64,9 @@ resource "aws_db_instance" "this" {
   storage_type         = "gp2"                  # (optional) under storate the Storage type General Purpose (SSD), if omitted it automatically put the latest
   allocated_storage    = 20                     # under storage the allocated storage text box - Required unless a snapshot_identifer  or replicate_source is provided
   engine               = "mysql"
-  engine_version       = "8.0"          # it would get the latest (OPTIONAL) 
-  instance_class       = "db.t2.micro"  # it is in the free tier ( REQUIRED)
-  port                 = local.rds_port # ( OPTIONAL) Once terraform knows it is "mysql" it knows what port to put. Port on which the DB accepts connections
+  engine_version       = "8.0"                # it would get the latest (OPTIONAL) 
+  instance_class       = local.instance_class # it is in the free tier "db.t2.micro" ( REQUIRED)
+  port                 = local.rds_port       # ( OPTIONAL) Once terraform knows it is "mysql" it knows what port to put. Port on which the DB accepts connections
   db_subnet_group_name = aws_db_subnet_group.this.name
   db_name              = local.db_name # the name of the database when the instance is created
   # Required unless a snapshot_identifier or replicate_source_db is provided - Username for the master user
@@ -73,7 +75,7 @@ resource "aws_db_instance" "this" {
   password = local.db_password
   # every time you create a database a parameter group is created but you dont see it
   parameter_group_name   = "default.mysql8.0" # Optional - the name of the DB parameter group
-  availability_zone      = "us-east-1a"       # Optional - if not specified terraform will choose it for you
+  availability_zone      = "${local.region}a" # Optional - if not specified terraform will choose it for you
   publicly_accessible    = false              # Optional - by default is false - not publicly accesible
   deletion_protection    = false              # Optional - If true it wont delete unless deletion protections is not enable -default value is false
   skip_final_snapshot    = true               # Optional - If true it skips the final snapshot before the database is deleted -default value is true

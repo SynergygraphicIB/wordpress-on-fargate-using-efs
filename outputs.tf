@@ -31,17 +31,17 @@ output "db_instance_id" {
 
 // OUTPUTS FROM MODULE FARGATE
 
-output "log-group-path" {
-  value = module.fargate.aws-log-group-path
+output "log-group-path_dev" {
+  value = module.fargate_dev.aws-log-group-path
 }
 
 
 // OUTPUTS FROM EFS MODULE 
 
-output "access_point_ids" {
-  value = module.efs.access_point_ids
+output "access_point_dev_ids" {
+  value = module.efs_dev.access_point_ids
 }
 
-output "efs_id" {
-  value = module.efs.id
+output "efs_dev_id" {
+  value = module.efs_dev.id
 }

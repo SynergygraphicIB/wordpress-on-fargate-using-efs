@@ -2,9 +2,13 @@
 # Terraform Provider(s) Variables
 #
 
+variable "master_id" {
+  description = "The 12-digit account ID used for role assumption"
+  /* default     = "489641906295" */
+}
+
 variable "region" {
   description = "AWS region"
-  default     = "us-east-1"
   type        = string
 }
 
@@ -132,10 +136,16 @@ variable "health_check_path" {
 
 ##              RDS VARIABLES                 ##
 
+variable "instance_class" {
+  type        = string
+  description = "(Required) The instance type of the RDS instance"
+  default     = "t2.micro"
+}
+
 variable "db_name" {
   description = "Database name"
   type        = string
-  default     = "wordpressRDS-DEV"
+  default     = "wordpressfargatedev"
 }
 
 variable "db_password" {

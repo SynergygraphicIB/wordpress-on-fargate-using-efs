@@ -26,3 +26,10 @@ variable "db_username" {}
 variable "db_subnet_group_name" {}
 
 variable "private_subnets" {}
+
+variable "region" {}
+
+variable "instance_class" {
+  type        = string
+  description = "(Required) The instance type of the RDS instance"
+}

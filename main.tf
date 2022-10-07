@@ -115,14 +115,14 @@ module "rds" {
   db_password          = var.db_password
   db_subnet_group_name = var.db_subnet_group_name
   private_subnets      = module.vpc_main.private_subnets
+  region               = var.region
 }
 
-// MODULE EFS
 
 
 // MODULE EVERYTHING ECS - FARGATE
 
-module "fargate" {
+module "fargate_dev" {
   source     = "./modules/fargate"
   depends_on = [module.alb]
 
@@ -144,13 +144,13 @@ module "fargate" {
   db_username           = var.db_username
   db_password           = var.db_password
   // EFS INPUTS
-  efs_id           = module.efs.id
-  efs_access_point = module.efs.access_point_ids["mnt/efs"]
+  efs_id           = module.efs_dev.id
+  efs_access_point = module.efs_dev.access_point_ids["mnt/efs"]
   volume_name      = var.volume_name
 }
 
 # *****                     EFS MODULE                                   *****
-module "efs" {
+module "efs_dev" {
   source = "cloudposse/efs/aws"
   # Cloud Posse recommends pinning every module to a specific version
   # version     = "x.x.x"

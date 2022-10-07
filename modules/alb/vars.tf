@@ -13,11 +13,13 @@ variable "vpc_namespace" {
 }
 
 variable "private_subnets" {
+  type        = list(string)
   description = "list of private subnets"
 }
 
 variable "public_subnets" {
-  type = list(string)
+  type        = list(string)
+  description = "list of public subnets"
 }
 
 variable "vpc_id" {
