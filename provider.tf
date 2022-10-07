@@ -8,23 +8,7 @@ provider "aws" {
   profile = "default"
   assume_role {
     role_arn     = "arn:aws:iam::${var.master_id}:role/MemberAdminRole"
-    session_name = "synergygraphics-learning-stuff"
+    session_name = "synergygraphics-learning-modules"
   }
 }
 
-
-
-
-
-
-
-
-
-/* default_tags {
-  tags = {
-    Team       = "Infrastructure"
-    Workload   = "MODULE PRACTICE"
-    CostCenter = "001-002"
-    Contact    = "contact@synergygraphics.io"
-  }
-} */

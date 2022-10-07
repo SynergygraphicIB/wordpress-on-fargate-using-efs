@@ -1,10 +1,6 @@
 #
 # Terraform Provider(s) Variables
 #
-variable "master_id" {
-  description = "The 12-digit account ID used for role assumption"
-  default     = "489641906295"
-}
 
 variable "region" {
   description = "AWS region"
@@ -78,31 +74,31 @@ variable "kms_ecs_alias" {
 variable "vpc_namespace" {
   description = "The project namespace to use for unique resource naming"
   // default     = "wordpress-on-fargate"
-  default = "wordpress-fargate"
+  default = "wordpress-fargate-using-efs"
   type    = string
 }
 
 variable "prefix" {
-  default     = "wop"
+  default     = "wp"
   description = "Common prefix for AWS resources names"
 }
 
 variable "vpc_cidr" {
   description = "AWS VPC CIDR range"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "192.168.0.0/16"
 }
 
 variable "private_subnets" {
   description = "The list of private subnets by AZ"
   type        = list(string)
-  default     = ["10.0.4.0/24", "10.0.5.0/24"]
+  default     = ["192.168.4.0/24", "192.168.5.0/24"]
 }
 
 variable "public_subnets" {
   description = "The list of public subnets by AZ"
   type        = list(string)
-  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+  default     = ["192.168.0.0/24", "192.168.1.0/24"]
 }
 
 variable "enable_nat" {
@@ -139,7 +135,7 @@ variable "health_check_path" {
 variable "db_name" {
   description = "Database name"
   type        = string
-  default     = "wordpressRDS"
+  default     = "wordpressRDS-DEV"
 }
 
 variable "db_password" {
@@ -162,7 +158,7 @@ variable "rds_port" {
 variable "db_subnet_group_name" {
   type        = string
   description = "(optional) describe your variable"
-  default     = "wordpress_db_subnet_group"
+  default     = "wordpress_db_subnet_group_dev"
 }
 
 # ECS FARGATE VARIABLES
@@ -182,7 +178,7 @@ variable "app_count" {
 variable "app_name" {
   description = "Docker image to run in the ECS cluster"
   // default     = "wordpress-on-fargate"
-  default = "wordpress-fargate"
+  default = "wordpress-fargate-dev"
 }
 
 variable "app_image" {
@@ -206,6 +202,6 @@ variable "fargate_memory" {
 variable "volume_name" {
   type        = string
   description = "efs volume name"
-  default     = "efs_volume"
+  default     = "efs_volume-dev"
 }
 

@@ -11,7 +11,7 @@ terraform {
   backend "s3" {
     region  = "us-east-1"
     bucket  = "terraform-synergydevops-state"
-    key     = "wordpress-on-fargate/using-EFS"
+    key     = "wordpress-on-fargate/06oct-version"
     encrypt = true
     profile = "default"
   }

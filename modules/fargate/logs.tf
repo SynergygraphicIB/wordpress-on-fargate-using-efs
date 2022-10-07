@@ -1,7 +1,11 @@
 # Set up CloudWatch group and log stream and retain logs for 30 days
+locals {
+  awslogs_group_path = var.awslogs-group-path
+}
+
 
 resource "aws_cloudwatch_log_group" "this" {
-  name              = var.awslogs-group-path
+  name              = local.awslogs_group_path
   retention_in_days = 30
 
   tags = {

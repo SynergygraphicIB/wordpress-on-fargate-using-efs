@@ -53,7 +53,7 @@ variable "task_definition_name" {
 
 variable "awslogs-group-path" {
   type    = string
-  default = "/ecs/wordpress-fargate-app"
+  default = "/ecs/wordpress-fargate-dev"
 }
 
 
